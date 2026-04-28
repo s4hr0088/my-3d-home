@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>RGB 3D Smart Home</title>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to right, #1e3c72, #2a5298);
+    overflow: hidden;
+    transition: 1s;
+}
+
+.scene {
+    perspective: 800px;
+}
+
+.house {
+    width: 200px;
+    height: 200px;
+    position: relative;
+    transform-style: preserve-3d;
+    animation: rotate 10s infinite linear;
+}
+
+.face {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: rgba(255,255,255,0.1);
+    border: 2px solid white;
+}
+
+.front  { transform: translateZ(100px); }
+.back   { transform: rotateY(180deg) translateZ(100px); }
+.right  { transform: rotateY(90deg) translateZ(100px); }
+.left   { transform: rotateY(-90deg) translateZ(100px); }
+.top    { transform: rotateX(90deg) translateZ(100px); }
+.bottom { transform: rotateX(-90deg) translateZ(100px); }
+
+.door {
+    width: 50px;
+    height: 80px;
+    background: brown;
+    position: absolute;
+    bottom: 0;
+    left: 75px;
+}
+
+.window {
+    width: 40px;
+    height: 40px;
+    background: yellow;
+    position: absolute;
+    top: 40px;
+    left: 20px;
+    transition: 0.5s;
+}
+
+/* Garden */
+.garden {
+    position: absolute;
+    bottom: -120px;
+    width: 300px;
+    height: 100px;
+    background: green;
+    left: -50px;
+}
+
+.tree {
+    position: absolute;
+    bottom: 0;
+    left: 20px;
+    width: 20px;
+    height: 60px;
+    background: brown;
+}
+
+.tree::after {
+    content: '';
+    position: absolute;
+    bottom: 50px;
+    left: -20px;
+    width: 60px;
+    height: 60px;
+    background: limegreen;
+    border-radius: 50%;
+}
+
+/* Controls */
+.controls {
+    position: absolute;
+    top: 20px;
+}
+
+button {
+    padding: 10px;
+    margin: 5px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+@keyframes rotate {
+    from { transform: rotateX(0deg) rotateY(0deg); }
+    to   { transform: rotateX(360deg) rotateY(360deg); }
+}
+</style>
+</head>
+
+<body>
+
+<div class="controls">
+    <button onclick="toggleLight()">💡 Light</button>
+    <button onclick="changeColor()">🌈 RGB</button>
+    <button onclick="toggleMode()">🌙 Day/Night</button>
+</div>
+
+<div class="scene">
+    <div class="house" id="house">
+        <div class="face front">
+            <div class="door"></div>
+            <div class="window" id="window"></div>
+        </div>
+        <div class="face back"></div>
+        <div class="face right"></div>
+        <div class="face left"></div>
+        <div class="face top"></div>
+        <div class="face bottom"></div>
+
+        <div class="garden">
+            <div class="tree"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+let lightOn = true;
+
+function toggleLight() {
+    let w = document.getElementById("window");
+    if (lightOn) {
+        w.style.background = "black";
+    } else {
+        w.style.background = "yellow";
+    }
+    lightOn = !lightOn;
+}
+
+function changeColor() {
+    let house = document.getElementById("house");
+    let r = Math.floor(Math.random()*255);
+    let g = Math.floor(Math.random()*255);
+    let b = Math.floor(Math.random()*255);
+    house.style.boxShadow = `0 0 40px rgb(${r},${g},${b})`;
+}
+
+let night = false;
+function toggleMode() {<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>RGB 3D Smart Home</title>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to right, #1e3c72, #2a5298);
+    overflow: hidden;
+    transition: 1s;
+}
+
+.scene {
+    perspective: 800px;
+}
+
+.house {
+    width: 200px;
+    height: 200px;
+    position: relative;
+    transform-style: preserve-3d;
+    animation: rotate 10s infinite linear;
+}
+
+.face {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: rgba(255,255,255,0.1);
+    border: 2px solid white;
+}
+
+.front  { transform: translateZ(100px); }
+.back   { transform: rotateY(180deg) translateZ(100px); }
+.right  { transform: rotateY(90deg) translateZ(100px); }
+.left   { transform: rotateY(-90deg) translateZ(100px); }
+.top    { transform: rotateX(90deg) translateZ(100px); }
+.bottom { transform: rotateX(-90deg) translateZ(100px); }
+
+.door {
+    width: 50px;
+    height: 80px;
+    background: brown;
+    position: absolute;
+    bottom: 0;
+    left: 75px;
+}
+
+.window {
+    width: 40px;
+    height: 40px;
+    background: yellow;
+    position: absolute;
+    top: 40px;
+    left: 20px;
+    transition: 0.5s;
+}
+
+/* Garden */
+.garden {
+    position: absolute;
+    bottom: -120px;
+    width: 300px;
+    height: 100px;
+    background: green;
+    left: -50px;
+}
+
+.tree {
+    position: absolute;
+    bottom: 0;
+    left: 20px;
+    width: 20px;
+    height: 60px;
+    background: brown;
+}
+
+.tree::after {
+    content: '';
+    position: absolute;
+    bottom: 50px;
+    left: -20px;
+    width: 60px;
+    height: 60px;
+    background: limegreen;
+    border-radius: 50%;
+}
+
+/* Controls */
+.controls {
+    position: absolute;
+    top: 20px;
+}
+
+button {
+    padding: 10px;
+    margin: 5px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+@keyframes rotate {
+    from { transform: rotateX(0deg) rotateY(0deg); }
+    to   { transform: rotateX(360deg) rotateY(360deg); }
+}
+</style>
+</head>
+
+<body>
+
+<div class="controls">
+    <button onclick="toggleLight()">💡 Light</button>
+    <button onclick="changeColor()">🌈 RGB</button>
+    <button onclick="toggleMode()">🌙 Day/Night</button>
+</div>
+
+<div class="scene">
+    <div class="house" id="house">
+        <div class="face front">
+            <div class="door"></div>
+            <div class="window" id="window"></div>
+        </div>
+        <div class="face back"></div>
+        <div class="face right"></div>
+        <div class="face left"></div>
+        <div class="face top"></div>
+        <div class="face bottom"></div>
+
+        <div class="garden">
+            <div class="tree"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+let lightOn = true;
+
+function toggleLight() {
+    let w = document.getElementById("window");
+    if (lightOn) {
+        w.style.background = "black";
+    } else {
+        w.style.background = "yellow";
+    }
+    lightOn = !lightOn;
+}
+
+function changeColor() {
+    let house = document.getElementById("house");
+    let r = Math.floor(Math.random()*255);
+    let g = Math.floor(Math.random()*255);
+    let b = Math.floor(Math.random()*255);
+    house.style.boxShadow = `0 0 40px rgb(${r},${g},${b})`;
+}
+
+let night = false;
+function toggleMode() {
+    if (!night) {
+        document.body.style.background = "black";
+    } else {
+        document.body.style.background = "linear-gradient(to right, #1e3c72, #2a5298)";
+    }
+    night = !night;
+}
+</script>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>RGB 3D Smart Home</title>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to right, #1e3c72, #2a5298);
+    overflow: hidden;
+    transition: 1s;
+}
+
+.scene {
+    perspective: 800px;
+}
+
+.house {
+    width: 200px;
+    height: 200px;
+    position: relative;
+    transform-style: preserve-3d;
+    animation: rotate 10s infinite linear;
+}
+
+.face {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: rgba(255,255,255,0.1);
+    border: 2px solid white;
+}
+
+.front  { transform: translateZ(100px); }
+.back   { transform: rotateY(180deg) translateZ(100px); }
+.right  { transform: rotateY(90deg) translateZ(100px); }
+.left   { transform: rotateY(-90deg) translateZ(100px); }
+.top    { transform: rotateX(90deg) translateZ(100px); }
+.bottom { transform: rotateX(-90deg) translateZ(100px); }
+
+.door {
+    width: 50px;
+    height: 80px;
+    background: brown;
+    position: absolute;
+    bottom: 0;
+    left: 75px;
+}
+
+.window {
+    width: 40px;
+    height: 40px;
+    background: yellow;
+    position: absolute;
+    top: 40px;
+    left: 20px;
+    transition: 0.5s;
+}
+
+/* Garden */
+.garden {
+    position: absolute;
+    bottom: -120px;
+    width: 300px;
+    height: 100px;
+    background: green;
+    left: -50px;
+}
+
+.tree {
+    position: absolute;
+    bottom: 0;
+    left: 20px;
+    width: 20px;
+    height: 60px;
+    background: brown;
+}
+
+.tree::after {
+    content: '';
+    position: absolute;
+    bottom: 50px;
+    left: -20px;
+    width: 60px;
+    height: 60px;
+    background: limegreen;
+    border-radius: 50%;
+}
+
+/* Controls */
+.controls {
+    position: absolute;
+    top: 20px;
+}
+
+button {
+    padding: 10px;
+    margin: 5px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+@keyframes rotate {
+    from { transform: rotateX(0deg) rotateY(0deg); }
+    to   { transform: rotateX(360deg) rotateY(360deg); }
+}
+</style>
+</head>
+
+<body>
+
+<div class="controls">
+    <button onclick="toggleLight()">💡 Light</button>
+    <button onclick="changeColor()">🌈 RGB</button>
+    <button onclick="toggleMode()">🌙 Day/Night</button>
+</div>
+
+<div class="scene">
+    <div class="house" id="house">
+        <div class="face front">
+            <div class="door"></div>
+            <div class="window" id="window"></div>
+        </div>
+        <div class="face back"></div>
+        <div class="face right"></div>
+        <div class="face left"></div>
+        <div class="face top"></div>
+        <div class="face bottom"></div>
+
+        <div class="garden">
+            <div class="tree"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+let lightOn = true;
+
+function toggleLight() {
+    let w = document.getElementById("window");
+    if (lightOn) {
+        w.style.background = "black";
+    } else {
+        w.style.background = "yellow";
+    }
+    lightOn = !lightOn;
+}
+
+function changeColor() {
+    let house = document.getElementById("house");
+    let r = Math.floor(Math.random()*255);
+    let g = Math.floor(Math.random()*255);
+    let b = Math.floor(Math.random()*255);
+    house.style.boxShadow = `0 0 40px rgb(${r},${g},${b})`;
+}
+
+let night = false;
+function toggleMode() {
+    if (!night) {
+        document.body.style.background = "black";
+    } else {
+        document.body.style.background = "linear-gradient(to right, #1e3c72, #2a5298)";
+    }
+    night = !night;
+}
+</script>
+
+</body>
+</html>
+    if (!night) {
+        document.body.style.background = "black";
+    } else {
+        document.body.style.background = "linear-gradient(to right, #1e3c72, #2a5298)";
+    }
+    night = !night;
+}
+</script>
+
+</body>
+</html>
